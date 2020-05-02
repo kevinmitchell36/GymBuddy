@@ -12,19 +12,14 @@
         <router-link to="/" class="navbar-item">Home</router-link>
         <router-link to="/about" class="navbar-item">About</router-link>
       </ul>
-         <div class="buttons">
-      <!-- Check that the SDK client is not currently loading before accessing is methods -->
-      <!-- <div v-if="!$auth.loading"> -->
-        <!-- show login when not authenticated -->
-        <!-- <a v-if="!$auth.isAuthenticated" @click="login" class="button"></a> -->
-          <strong>Sign in</strong>
-        <!-- show logout when authenticated -->
-        <!-- <a v-if="$auth.isAuthenticated" @click="logout"  -->
-          <strong class="button">Logout</strong>
-        <!-- <p v-if="$auth.isAuthenticated">Welcome, {{$auth.user.nickname}}!</p> -->
-
-      <!-- </div> -->
-    </div>
+      <div class="buttons">
+        <div v-if="!$auth.loading">
+          <!-- show login when not authenticated -->
+          <a v-if="!$auth.isAuthenticated" @click="login" class="button is-dark"><strong>Sign in</strong></a>
+          <!-- show logout when authenticated -->
+          <a v-if="$auth.isAuthenticated" @click="logout" class="button is-dark"><strong>Log out</strong></a>
+        </div>
+      </div>
     </div>
   </nav>
 </template>
