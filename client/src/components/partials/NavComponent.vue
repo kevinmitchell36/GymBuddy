@@ -18,6 +18,7 @@
           <a v-if="!$auth.isAuthenticated" @click="login" class="button is-dark"><strong>Sign in</strong></a>
           <!-- show logout when authenticated -->
           <a v-if="$auth.isAuthenticated" @click="logout" class="button is-dark"><strong>Log out</strong></a>
+          <p v-if="$auth.isAuthenticated">Welcome, {{$auth.user.nickname}}!</p>
         </div>
       </div>
     </div>

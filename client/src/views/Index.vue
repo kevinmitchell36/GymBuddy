@@ -4,7 +4,7 @@
       View your routines
     </h2>
     <div class="items">
-      <RoutineList />
+      <IndexComponent />
     </div>
   </div>
 </template>

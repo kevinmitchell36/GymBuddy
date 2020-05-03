@@ -2,7 +2,8 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Home from '../views/Home.vue';
 import IndexComponent from '../views/Index.vue';
-// import { authGuard } from '../auth/authGuard';
+import Add from '../views/Add.vue';
+import { authGuard } from '../auth/authGuard';
 
 
 
@@ -30,8 +31,13 @@ const routes = [
   {
     path: '/routines/:id',
     name: 'routineSingle',
-    component: () => import('../views/Show.vue')
-    // beforeEnter: authGuard
+    component: () => import('../views/Show.vue'),
+    beforeEnter: authGuard
+  },
+  {
+    path: '/routines/add',
+    name: 'routineAdd',
+    component: Add
   }
 ]
 

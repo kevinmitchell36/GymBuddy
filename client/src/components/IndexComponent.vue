@@ -2,7 +2,7 @@
   <div class="routine-list">
    <div v-for="routine in routines" :routine="routine" :key="routine._id" class="column">
         <router-link :to="'/routines/' + routine._id">
-          <RoutineCard :routine="routine" />
+          <ShowComponent :routine="routine" />
         </router-link>
       </div>
   </div>
