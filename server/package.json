@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kevinmitchell36/GymBuddy.git"
+    "url": "git+git@github.com:kevinmitchell36/GymBuddy.git"
   },
   "author": "",
   "license": "ISC",

@@ -23,8 +23,9 @@ const checkJwt = jwt({
 
 
 
-router.get('/',  (req , res) => {
-  Routine.find({}).then((routines) => {
+router.get('/', checkJwt,  (req , res) => {
+  const currentUser = req.user.sub;
+  Routine.find({userId: currentUser}).then((routines) => {
     res.send(routines);
   });
 });
@@ -42,7 +43,6 @@ router.get('/:id', checkJwt, (req, res) => {
 
 router.post('/', (req, res) => {
   const {name, wtype, categories, sets, reps, time, notes, userId} = req.body;
-  // Validation?
   const newRoutine = new Routine({
     name,
     wtype,

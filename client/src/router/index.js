@@ -35,7 +35,7 @@ const routes = [
     beforeEnter: authGuard
   },
   {
-    path: '/routines/add',
+    path: '/add',
     name: 'routineAdd',
     component: Add
   }

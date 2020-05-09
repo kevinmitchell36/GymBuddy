@@ -19,7 +19,7 @@ export default {
   data () {
     return {
       routine: {},
-      routines: []
+      routines: [],
     };  
   },
   created() {
@@ -27,7 +27,8 @@ export default {
   },
   methods: {
     async getRoutinesData() {
-      RoutineService.getRoutines()
+      const accessToken = await this.$auth.getTokenSilently()
+      RoutineService.getRoutines(accessToken)
       .then(
         (routines => {
           this.$set(this, "routines", routines);

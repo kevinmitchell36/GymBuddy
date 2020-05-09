@@ -28,7 +28,6 @@ export default {
   async getRoutines() {
     // Get the access token from the auth wrapper
     const accessToken = await this.$auth.getTokenSilently()
-
     // Use the eventService to call the getEventSingle method
     RoutineService.getRoutineSingle(this.$route.params.id, accessToken)
     .then(

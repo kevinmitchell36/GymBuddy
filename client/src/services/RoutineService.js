@@ -1,8 +1,12 @@
 import axios from "axios"
 
 export default {
-  async getRoutines() {
-    let res = await axios.get("http://localhost:3000/api/routines");
+  async getRoutines(accessToken) {
+    let res = await axios.get("http://localhost:3000/api/routines", {
+      headers: {
+        Authorization: `Bearer ${accessToken}`
+      }
+    });
     return res.data;
   },
   async getRoutineSingle(routineId, accessToken) {

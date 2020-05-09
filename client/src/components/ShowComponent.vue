@@ -15,7 +15,8 @@
 export default {
   props: [
     'routine'
-  ]
+  ],
+  
 }
 </script>
 
