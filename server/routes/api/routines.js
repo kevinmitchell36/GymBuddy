@@ -21,8 +21,6 @@ const checkJwt = jwt({
   algorithm: ["RS256"]
 });
 
-
-
 router.get('/', checkJwt,  (req , res) => {
   const currentUser = req.user.sub;
   Routine.find({userId: currentUser}).then((routines) => {

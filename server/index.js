@@ -28,10 +28,10 @@ mongoose.connect(uri, {useNewUrlParser: true, useUnifiedTopology: true})
 
 //Require routes
 const routines = require('./routes/api/routines');
-// const users = require('./routes/api/users');
+
 
 app.use('/api/routines', routines);
-// app.use('/api/users', users);
+
 
 //Set sever
 const port = 3000;

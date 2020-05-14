@@ -19,6 +19,7 @@
           <!-- show logout when authenticated -->
           <a v-if="$auth.isAuthenticated" @click="logout" class="button is-dark"><strong>Log out</strong></a>
           <p v-if="$auth.isAuthenticated">Welcome, {{$auth.user.nickname}}!</p>
+          <router-link to="#" class="button is-dark"><i class="fas fa-suitcase">Gym Bag</i></router-link>
         </div>
       </div>
     </div>

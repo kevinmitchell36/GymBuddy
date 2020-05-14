@@ -1,14 +1,28 @@
 <template>
   <div id="routine-single">
-    <h1 class="title">
+    <h1 class="name">
       {{routine.name}}
     </h1>
-    <h2 class="category">
-      {{routine.type}}
+    <h2 class="type">
+      {{routine.wtype}}
     </h2>
-    <h3 class="description">
-      {{routine.notes}}
+    <h3 class="categories">
+      {{routine.categories}}
     </h3>
+    <ul>
+      <li class="sets">Sets:
+        {{routine.sets}}
+      </li>
+      <li class="reps">Reps:
+        {{routine.reps}}
+      </li>
+      <li class="time">Time:
+        {{routine.time}}
+      </li>
+    </ul>
+    <p class="notes">Notes:
+      {{routine.notes}}
+    </p>
   </div>
 </template>
 
@@ -25,22 +39,39 @@ export default {
     this.getRoutines();
   },
   methods: {
-  async getRoutines() {
-    // Get the access token from the auth wrapper
-    const accessToken = await this.$auth.getTokenSilently()
-    // Use the eventService to call the getEventSingle method
-    RoutineService.getRoutineSingle(this.$route.params.id, accessToken)
-    .then(
-      (routine => {
-        this.$set(this, "routine", routine);
-      }).bind(this)
-    );
+    async getRoutines() {
+      // Get the access token from the auth wrapper
+      const accessToken = await this.$auth.getTokenSilently()
+      // Use the eventService to call the getEventSingle method
+      RoutineService.getRoutineSingle(this.$route.params.id, accessToken)
+      .then(
+        (routine => {
+          this.$set(this, "routine", routine);
+        }).bind(this)
+      );
+    },
   }
-}
 }
 
 </script>
 
 <style>
+  #routine-single {
+    border: 1px solid black;
+    box-shadow: 10px 10px 5px #aaaaaa;
+    margin-top: 10px;
+    width: 400px;
+  }
 
+  ul {
+    display: flex;
+    align-items: flex-start;
+    list-style-type: none; 
+  }
+
+  ul li {
+    padding: 1.5rem;
+  }
+
+  
 </style>

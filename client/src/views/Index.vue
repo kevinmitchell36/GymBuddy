@@ -1,12 +1,15 @@
 <template>
-  <div class="routinelist">
-    <h2 class="2-heading">
+  
+  <main class="routinelist">
+    <header class="header">
       View your routines
-    </h2>
-    <div class="items">
+    </header>
+    <div>
       <IndexComponent />
     </div>
-  </div>
+    <button @click="hello">Click Me!</button>
+  </main>
+  
 </template>
 
 <script>
@@ -15,10 +18,25 @@ export default {
   name: 'routinelist',
   components: {
     IndexComponent
-  }
+  },
+  mixins: [IndexComponent]
 }
 </script>
 
 <style scoped>
 
+.routinelist .routine-list {
+  display: grid;
+  grid-template-areas: 
+    'header header header'
+    'column column column';
+}
+
+.header {
+  grid-area: header;
+}
+
+.column {
+  grid-area: column;
+}
 </style>

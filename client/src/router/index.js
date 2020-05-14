@@ -26,7 +26,8 @@ const routes = [
   {
     path: '/routines',
     name: 'routines',
-    component: IndexComponent
+    component: IndexComponent,
+    beforeEnter: authGuard
   },
   {
     path: '/routines/:id',
@@ -37,7 +38,8 @@ const routes = [
   {
     path: '/add',
     name: 'routineAdd',
-    component: Add
+    component: Add,
+    beforeEnter: authGuard
   }
 ]
 

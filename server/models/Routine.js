@@ -11,7 +11,7 @@ const RoutineSchema = new mongoose.Schema({
     // required: true
   },
   categories: {
-    type: String
+    type: Array
     // default: undefined
     // required: true
   },

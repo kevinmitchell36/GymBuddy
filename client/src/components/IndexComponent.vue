@@ -34,11 +34,15 @@ export default {
           this.$set(this, "routines", routines);
         }).bind(this)
       );
+    },
+    hello() {
+      console.log('hello');
     }
   }
 }
 </script>
 <style scoped>
+
 
 </style>
 
