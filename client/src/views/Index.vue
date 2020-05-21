@@ -1,31 +1,28 @@
 <template>
   
   <main class="routinelist">
+    <Routines/>
     <header class="header">
       View your routines
     </header>
-    <div>
-      <IndexComponent />
-    </div>
-    <button @click="hello">Click Me!</button>
   </main>
   
 </template>
 
 <script>
-import IndexComponent from '@/components/IndexComponent';
+
+import Routines from '@/components/Routines';
 export default {
   name: 'routinelist',
   components: {
-    IndexComponent
-  },
-  mixins: [IndexComponent]
+    Routines
+  }
 }
 </script>
 
 <style scoped>
 
-.routinelist .routine-list {
+/* .routinelist .routine-list {
   display: grid;
   grid-template-areas: 
     'header header header'
@@ -38,5 +35,5 @@ export default {
 
 .column {
   grid-area: column;
-}
+} */
 </style>
