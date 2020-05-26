@@ -2,9 +2,6 @@
   
   <main class="routinelist">
     <Routines/>
-    <header class="header">
-      View your routines
-    </header>
   </main>
   
 </template>
