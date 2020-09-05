@@ -1,14 +1,15 @@
 import axios from 'axios';
 
-
-
 const state = {
-  routines: []
-    
+  routines: [],
+  routine: {}, 
+  accessToken: "",
+  id: ""    
 };
 
 const getters = {
-  allRoutines: (state) => state.routines
+  allRoutines: (state) => state.routines,
+  singleRoutine: (state) => state.routine
 };
 
 const actions = {
@@ -19,11 +20,22 @@ const actions = {
       }
     });
     commit('setRoutines', response.data);
+  },
+  async fetchSingleRoutine( {commit}, temp ) {
+    console.log(temp);
+    const response = await axios.get("http://localhost:3000/api/routines/" + temp.id, {
+      headers: {
+        Authorization: `Bearer ${temp.accessToken}`
+      }
+    });
+    console.log(response.data);
+    commit('setSingleRoutine', response.data);
   }
 };
 
 const mutations = {
-  setRoutines: (state, routines) => (state.routines = routines)
+  setRoutines: (state, routines) => (state.routines = routines),
+  setSingleRoutine: (state, routine) => (state.routine = routine)
 };
 
 export default {

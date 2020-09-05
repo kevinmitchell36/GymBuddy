@@ -32,7 +32,7 @@ const routes = [
   {
     path: '/routines/:id',
     name: 'routineSingle',
-    component: () => import('../views/Show.vue'),
+    component: () => import('../components/RoutineSingle.vue'),
     beforeEnter: authGuard
   },
   {

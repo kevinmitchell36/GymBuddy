@@ -1,6 +1,7 @@
 <template>
   <div>
     <h3>Routines</h3>
+    <button v-on:click="overlay">Add Routine</button>
     <div class="routines">
         <div v-for="routine in allRoutines" :key="routine._id" class="routine">
           <router-link :to="'/routines/' + routine._id" class="links">
@@ -19,6 +20,7 @@
           </div>
         </div>
       </div>
+    <div id="overlay">Weee!!!</div>
   </div>
 </template>
 
@@ -31,6 +33,14 @@ export default {
     async fetchToken() {
       const accessToken = await this.$auth.getTokenSilently()
       this.fetchRoutines(accessToken)
+    },
+    overlay() {
+      // let overlay = template.getElementById("overlay") 
+      // console.log(overlay) 
+      // let routines = template.getElementById("routines")  
+      // console.log(routines) 
+      // grab parent and overlay components
+      // add css classes to both to add z index
     }
   },
   computed: mapGetters(['allRoutines']),
