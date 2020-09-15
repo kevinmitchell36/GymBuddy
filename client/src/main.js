@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
-import store from './store';
-
+import store from './store'
+import VModal from 'vue-js-modal'
 
 // Import the Auth0 configuration
 import { domain, clientId, audience } from "../auth_config.json";
@@ -25,6 +25,13 @@ Vue.use(Auth0Plugin, {
     );
   }
 });
+
+Vue.use(VModal, {
+  dymanicDefaults: {
+    height: 'auto',
+    draggable: true
+  }  
+})
 
 Vue.config.productionTip = false
 

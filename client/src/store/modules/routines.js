@@ -4,7 +4,7 @@ const state = {
   routines: [],
   routine: {}, 
   accessToken: "",
-  id: ""    
+  id: "",  
 };
 
 const getters = {
@@ -28,7 +28,6 @@ const actions = {
         Authorization: `Bearer ${temp.accessToken}`
       }
     });
-    console.log(response.data);
     commit('setSingleRoutine', response.data);
   }
 };
