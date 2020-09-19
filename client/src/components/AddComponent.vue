@@ -3,7 +3,7 @@
     <button @click.prevent="show">Add Routine</button>
     <modal name="add-form" :height="700">
       <form class="form-wrap"
-        @submit.prevent.once='addRoutine'>
+        @submit.prevent.once='postRoutine'>
 
           <div class="form-group">
             <label for='name'>Name</label>
@@ -91,15 +91,14 @@
 
 <script>
 
-import RoutineService from '../services/RoutineService.js'
-
+// import RoutineService from '../services/RoutineService.js'
+import { mapSetters, mapActions } from 'vuex' 
  
 export default {
-  //Names template
+
   name: 'addRoutine',
   data() {
     return {
-      category: '',
       name: '',
       wtype: '',
       categories: [],
@@ -111,20 +110,21 @@ export default {
     }
   },
   methods: {
-    async addRoutine() {
-      // const accessToken = await this.$auth.getTokenSilently()
+    ...mapActions(['writeRoutine']),
+    // async addRoutine() {
+    //   // const accessToken = await this.$auth.getTokenSilently()
       
-      await RoutineService.addRoutinePost(
-        this.name, 
-        this.wtype, 
-        this.categories, 
-        this.sets, 
-        this.reps,
-        this.time,
-        this.notes,
-        this.userId = this.$auth.user.sub
-      );
-    },
+    //   await RoutineService.addRoutinePost(
+    //     this.name, 
+    //     this.wtype, 
+    //     this.categories, 
+    //     this.sets, 
+    //     this.reps,
+    //     this.time,
+    //     this.notes,
+    //     this.userId = this.$auth.user.sub
+    //   );
+    // },
     addCategory() {
       this.categories.push(this.category);
       console.log(this.categories);
@@ -133,10 +133,11 @@ export default {
     remove(category) {
       this.categories.splice(this.categories.indexOf(category), 1);
     },
-  show () {
-    this.$modal.show('add-form')
+    show () {
+      this.$modal.show('add-form')
     },
-  }
+  },
+  computed: mapSetters(['addRoutine']),
 }
 
 </script>

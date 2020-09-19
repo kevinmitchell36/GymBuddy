@@ -10,7 +10,7 @@ export default {
   name: 'Routine',
   methods: {
     ...mapActions(['fetchSingleRoutine']),
-     async fetchToken() {
+    async fetchToken() {
       const accessToken = await this.$auth.getTokenSilently()
       const id = this.$route.params.id
       this.fetchSingleRoutine({"id": id, "accessToken": accessToken})

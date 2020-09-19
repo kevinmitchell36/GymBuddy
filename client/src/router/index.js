@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Home from '../views/Home.vue';
-import IndexComponent from '../views/Index.vue';
+import Index from '../views/Index.vue';
 import AddComponent from '../components/AddComponent.vue';
 import { authGuard } from '../auth/authGuard';
 
@@ -26,7 +26,7 @@ const routes = [
   {
     path: '/routines',
     name: 'routines',
-    component: IndexComponent,
+    component: Index,
     beforeEnter: authGuard
   },
   {

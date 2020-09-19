@@ -1,18 +1,19 @@
 <template>
   <div id="app">
     <NavComponent/>
-    <!-- <Routines/> -->
     <router-view/>
+    <FooterComponent/>
   </div>
 </template>
 
 <script>
 import NavComponent from './components/partials/NavComponent.vue';
-// import Routines from './components/Routines.vue';
+import FooterComponent from './components/partials/FooterComponent.vue';
 export default {
   name: 'app',
   components: {
-    NavComponent
+    NavComponent,
+    FooterComponent
   }
 }
 </script>
