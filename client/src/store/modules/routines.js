@@ -22,7 +22,6 @@ const actions = {
     commit('setRoutines', response.data);
   },
   async fetchSingleRoutine( {commit}, temp ) {
-    console.log(temp);
     const response = await axios.get("http://localhost:3000/api/routines/" + temp.id, {
       headers: {
         Authorization: `Bearer ${temp.accessToken}`

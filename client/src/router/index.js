@@ -2,7 +2,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Home from '../views/Home.vue';
 import IndexComponent from '../views/Index.vue';
-import Add from '../views/Add.vue';
+import AddComponent from '../components/AddComponent.vue';
 import { authGuard } from '../auth/authGuard';
 
 
@@ -38,7 +38,7 @@ const routes = [
   {
     path: '/add',
     name: 'routineAdd',
-    component: Add,
+    component: AddComponent,
     beforeEnter: authGuard
   }
 ]
