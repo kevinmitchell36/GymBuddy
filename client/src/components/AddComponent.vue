@@ -3,7 +3,7 @@
     <button @click.prevent="show">Add Routine</button>
     <modal name="add-form" :height="700">
       <form class="form-wrap"
-        @submit.prevent.once='postRoutine'>
+        @submit.prevent.once='onSubmit'>
 
           <div class="form-group">
             <label for='name'>Name</label>
@@ -92,13 +92,14 @@
 <script>
 
 // import RoutineService from '../services/RoutineService.js'
-import { mapSetters, mapActions } from 'vuex' 
+import { mapActions } from 'vuex' 
  
 export default {
 
   name: 'addRoutine',
   data() {
     return {
+      category: '',
       name: '',
       wtype: '',
       categories: [],
@@ -110,21 +111,19 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['writeRoutine']),
-    // async addRoutine() {
-    //   // const accessToken = await this.$auth.getTokenSilently()
-      
-    //   await RoutineService.addRoutinePost(
-    //     this.name, 
-    //     this.wtype, 
-    //     this.categories, 
-    //     this.sets, 
-    //     this.reps,
-    //     this.time,
-    //     this.notes,
-    //     this.userId = this.$auth.user.sub
-    //   );
-    // },
+    ...mapActions(['setRoutine']),
+    onSubmit() {
+      this.setRoutine({
+        "name": this.name, 
+        "wtype": this.wtype, 
+        "categories": this.categories, 
+        "sets": this.sets, 
+        "reps": this.reps,
+        "time": this.time,
+        "notes": this.notes,
+        "userId": this.userId = this.$auth.user.sub
+      });
+    },
     addCategory() {
       this.categories.push(this.category);
       console.log(this.categories);
@@ -136,8 +135,7 @@ export default {
     show () {
       this.$modal.show('add-form')
     },
-  },
-  computed: mapSetters(['addRoutine']),
+  }
 }
 
 </script>

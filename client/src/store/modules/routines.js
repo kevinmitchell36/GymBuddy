@@ -5,23 +5,11 @@ const state = {
   routine: {}, 
   accessToken: "",
   id: "",
-  name: '',
-  wtype: '',
-  categories: [],
-  sets: null,
-  reps: null,
-  time: null,
-  notes: '',
-  userId: ''  
 };
 
 const getters = {
   allRoutines: (state) => state.routines,
   singleRoutine: (state) => state.routine
-};
-
-const setters = {
-  addRoutine: (state) => state.routine
 };
 
 const actions = {
@@ -41,17 +29,18 @@ const actions = {
     });
     commit('setSingleRoutine', response.data);
   },
-  async writeRoutine( { commit }, name, wtype, categories, sets, reps, time, notes, userId) {
-    let response = await axios.post("http://localhost:3000/api/routines/", {
-      name,
-      wtype,
-      categories,
-      sets,
-      reps,
-      time,
-      notes,
-      userId
+  async setRoutine( { commit }, routine) {
+    const response = await axios.post("http://localhost:3000/api/routines/", {
+      name: routine.name,
+      wtype: routine.wtype,
+      categories: routine.categories,
+      sets: routine.sets,
+      reps: routine.reps,
+      time: routine.time,
+      notes: routine.notes,
+      userId: routine.userId
     });
+    console.group(response.data);
     commit('postRoutine', response.data)
   }
 };
@@ -65,7 +54,6 @@ const mutations = {
 export default {
   state,
   getters,
-  setters,
   actions,
   mutations
 };
