@@ -1,42 +1,27 @@
 <template>
   
-  <main class="routinelist">
-    <header class="header">
-      View your routines
-    </header>
-    <div>
-      <IndexComponent />
-    </div>
-    <button @click="hello">Click Me!</button>
-  </main>
+  <div>
+    <AddComponent />
+    <main class="routinelist">
+      <Routines />
+    </main>
+  </div>
   
 </template>
 
 <script>
-import IndexComponent from '@/components/IndexComponent';
+
+import Routines from '@/components/Routines';
+import AddComponent from '@/components/AddComponent';
 export default {
   name: 'routinelist',
   components: {
-    IndexComponent
-  },
-  mixins: [IndexComponent]
+    Routines,
+    AddComponent
+  }
 }
 </script>
 
 <style scoped>
 
-.routinelist .routine-list {
-  display: grid;
-  grid-template-areas: 
-    'header header header'
-    'column column column';
-}
-
-.header {
-  grid-area: header;
-}
-
-.column {
-  grid-area: column;
-}
 </style>

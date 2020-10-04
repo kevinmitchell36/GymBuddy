@@ -2,15 +2,18 @@
   <div id="app">
     <NavComponent/>
     <router-view/>
+    <FooterComponent/>
   </div>
 </template>
 
 <script>
 import NavComponent from './components/partials/NavComponent.vue';
+import FooterComponent from './components/partials/FooterComponent.vue';
 export default {
   name: 'app',
   components: {
-    NavComponent
+    NavComponent,
+    FooterComponent
   }
 }
 </script>
