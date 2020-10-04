@@ -1,24 +1,36 @@
 <template>
   <div>
     <h3>Routines</h3>
-    <div class="routines">
-        <div v-for="routine in allRoutines" :key="routine._id" class="routine">
-          <router-link :to="'/routines/' + routine._id" class="links">
-            <h3 class="name">{{routine.name}}</h3>
-            <h4 class="type">{{routine.wtype}}</h4>
-            <div v-for="category in routine.categories" :key="category" class="categories">
-              <ul class="categories-list">
-                <li class="category">{{category}}</li>
-              </ul>
+    <table class="routines">
+      <thead>
+        <tr>
+          <th>Name:</th>
+          <th>Type:</th>
+          <th>Categories:</th>
+          <th>Notes:</th>
+          <th>Options:</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="routine in allRoutines" :key="routine._id" class="routine">
+          <!-- <router-link :to="'/routines/' + routine._id" class="links"> -->
+            <td class="name">{{routine.name}}</td>
+            <td class="type">{{routine.wtype}}</td>
+            <td>
+              <span v-for="category in routine.categories" :key="category" class="categories">
+                <span class="category">{{category}}</span>
+              </span>
+            </td>
+            <td class="notes">{{routine.notes}}</td>
+          <!--  -->
+          <td class="drop-down">
+            <div v-for="option in options" :key="option">
+              <span v-on:click="optionCaller(option)">{{option}}</span>
             </div>
-            <p class="notes">{{routine.notes}}</p>
-          </router-link>
-          <div class="icons">
-            <span class="edit"><i class="far fa-edit"></i></span>
-            <span class="gym-bag"><i class="fas fa-suitcase"></i></span>
-          </div>
-        </div>
-      </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </template>
 
@@ -26,11 +38,20 @@
 import { mapGetters, mapActions } from 'vuex';
 export default {
   name: "Routines",
+  data() {
+    return {
+      options: ["Info", "Edit", "Delete", "Gym Bag"]
+    }
+  },
   methods: {
     ...mapActions(['fetchRoutines']),
     async fetchToken() {
       const accessToken = await this.$auth.getTokenSilently()
       this.fetchRoutines(accessToken)
+      console.log(accessToken)
+    },
+    optionCaller(arg) {
+      console.log("Hello, " + arg)
     }
   },
   computed: {
@@ -44,46 +65,21 @@ export default {
 
 <style>
 
-.routines {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.routine {
-  border: 1px solid black;
-  box-shadow: 10px 10px 5px #aaaaaa;
-  margin: 10px;
-  width: 400px;
-  padding: 5px;
-}
-
-.routine .links {
-  text-decoration: none;
-  color: black;
-}
-
-.routine .links:hover {
-  cursor: pointer;
-}
-
-.routine .categories {
-  display: inline-block;
-}
-.routine .categories .categories-list {
-  list-style-type: none; 
-}
-
-.routine .categories .categories-list .category {
-  margin-left: 5px;
-}
-
-.icons {
-  display: flex;
-  justify-content: space-between;
-  padding: 0px 10px;
+table {
+  width: 100%;
+  border-spacing: 0;
 }
 
 
+th, td {
+  border-bottom: 2px solid black;
+  padding: 5px 0;
+}
 
 </style>

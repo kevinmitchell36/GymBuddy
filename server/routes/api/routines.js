@@ -5,6 +5,7 @@ const jwt = require("express-jwt");
 const jwksRsa = require("jwks-rsa"); 
 
 const authConfig = require('../../config/keys.js');
+const { findOne } = require('../../models/Routine');
 
 const checkJwt = jwt({
   // Provide a signing key based on the key identifier in the header and the signing keys provided by your Auth0 JWKS endpoint.
@@ -57,6 +58,36 @@ router.post('/', (req, res) => {
   })
   .catch(err => console.log(err));
 });
+
+router.patch("/:id", (req, res) => {
+  Routine.findOne({
+    _id: req.params.id
+  })
+  .then(routine => {
+    routine.name = req.body.name || routine.name;
+    routine.wtype = req.body.wtype || routine.wtype;
+    routine.categories = req.body.categories || routine.categories;
+    routine.sets = req.body.sets || routine.sets;
+    routine.reps = req.body.reps || routine.reps;
+    routine.time = req.body.time || routine.time;
+    routine.notes = req.body.notes || routine.notes;
+    routine.userId = req.body.userId;
+    routine.save()
+      .then(routine => {
+        res.send(routine)
+      })
+      .catch(err => console.log(err));
+  });
+});
+
+router.delete("/:id", (req, res) => {
+  Routine.deleteOne({_id: req.params.id})
+    .then(() => {
+      res.send("Deleted")
+    })
+})
+
+
 
 module.exports = router;
 
