@@ -12,8 +12,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="routine in allRoutines" :key="routine._id" class="routine">
-          <!-- <router-link :to="'/routines/' + routine._id" class="links"> -->
+        <tr v-for="routine in allRoutines" :key="routine._id" :routine="routine" class="routine">
             <td class="name">{{routine.name}}</td>
             <td class="type">{{routine.wtype}}</td>
             <td>
@@ -22,11 +21,8 @@
               </span>
             </td>
             <td class="notes">{{routine.notes}}</td>
-          <!--  -->
           <td class="drop-down">
-            <div v-for="option in options" :key="option">
-              <span v-on:click="optionCaller(option)">{{option}}</span>
-            </div>
+            <EditComponent  :routine="routine" />
           </td>
         </tr>
       </tbody>
@@ -35,13 +31,17 @@
 </template>
 
 <script>
+import EditComponent from "@/components/EditComponent"
 import { mapGetters, mapActions } from 'vuex';
 export default {
   name: "Routines",
   data() {
     return {
-      options: ["Info", "Edit", "Delete", "Gym Bag"]
+      routine: {}
     }
+  },
+  components: {
+    EditComponent
   },
   methods: {
     ...mapActions(['fetchRoutines']),
