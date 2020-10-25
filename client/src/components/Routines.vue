@@ -12,7 +12,8 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="routine in allRoutines" :key="routine._id" :routine="routine" class="routine">
+        <tr v-for="routine in allRoutines" :key="routine._id" class="routine">
+          <!-- <router-link :to="'/routines/' + routine._id" class="links"> -->
             <td class="name">{{routine.name}}</td>
             <td class="type">{{routine.wtype}}</td>
             <td>
@@ -21,8 +22,9 @@
               </span>
             </td>
             <td class="notes">{{routine.notes}}</td>
+          <!--  -->
           <td class="drop-down">
-            <EditComponent  :routine="routine" />
+            <ShowComponent  :routine="routine" />
           </td>
         </tr>
       </tbody>
@@ -31,7 +33,7 @@
 </template>
 
 <script>
-import EditComponent from "@/components/EditComponent"
+import ShowComponent from "@/components/ShowComponent"
 import { mapGetters, mapActions } from 'vuex';
 export default {
   name: "Routines",
@@ -41,7 +43,7 @@ export default {
     }
   },
   components: {
-    EditComponent
+    ShowComponent
   },
   methods: {
     ...mapActions(['fetchRoutines']),
@@ -49,9 +51,6 @@ export default {
       const accessToken = await this.$auth.getTokenSilently()
       this.fetchRoutines(accessToken)
       console.log(accessToken)
-    },
-    optionCaller(arg) {
-      console.log("Hello, " + arg)
     }
   },
   computed: {
