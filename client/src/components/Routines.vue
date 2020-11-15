@@ -13,17 +13,15 @@
       </thead>
       <tbody>
         <tr v-for="routine in allRoutines" :key="routine._id" class="routine">
-          <!-- <router-link :to="'/routines/' + routine._id" class="links"> -->
-            <td class="name">{{routine.name}}</td>
-            <td class="type">{{routine.wtype}}</td>
-            <td>
-              <span v-for="category in routine.categories" :key="category" class="categories">
-                <span class="category">{{category}}</span>
-              </span>
-            </td>
-            <td class="notes">{{routine.notes}}</td>
-          <!--  -->
-          <td class="drop-down">
+          <td class="name">{{routine.name}}</td>
+          <td class="type">{{routine.wtype}}</td>
+          <td>
+            <span v-for="category in routine.categories" :key="category" class="categories">
+              <span class="category">{{category}}, </span>
+            </span>
+          </td>
+          <td class="notes">{{routine.notes}}</td>
+            <td class="drop-down">
             <ShowComponent  :routine="routine" />
           </td>
         </tr>
