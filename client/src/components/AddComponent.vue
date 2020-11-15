@@ -178,7 +178,7 @@ export default {
   border: 1px solid black;
   border-radius: 5px;
   position: relative;
-  bottom: 28px;
+  bottom: 29px;
   left: 150px;
   background: #2074c1;
   text-shadow: 2px 2px 4px #000000;
@@ -228,7 +228,11 @@ export default {
   background: #2074c1;
   text-shadow: 2px 2px 4px #000000;
   color:whitesmoke;
+}
 
+.form-wrap .tags p:hover {
+  cursor: pointer;
+  background-color: #0000cd;
 }
 
 </style>

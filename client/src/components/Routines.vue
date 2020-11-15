@@ -17,7 +17,7 @@
           <td class="type">{{routine.wtype}}</td>
           <td>
             <span v-for="category in routine.categories" :key="category" class="categories">
-              <span class="category">{{category}}, </span>
+              <span class="category">{{category}} </span> 
             </span>
           </td>
           <td class="notes">{{routine.notes}}</td>
