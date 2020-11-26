@@ -3,7 +3,6 @@ const router = express.Router();
 const Routine = require('../../models/Routine');
 const jwt = require("express-jwt"); 
 const jwksRsa = require("jwks-rsa"); 
-
 const authConfig = require('../../config/keys.js');
 const { findOne } = require('../../models/Routine');
 
@@ -73,10 +72,10 @@ router.patch("/:id", (req, res) => {
     routine.notes = req.body.notes || routine.notes;
     routine.userId = req.body.userId;
     routine.save()
-      .then(routine => {
-        res.send(routine)
-      })
-      .catch(err => console.log(err));
+    .then(routine => {
+      res.send(routine)
+    })
+    .catch(err => console.log(err));
   });
 });
 

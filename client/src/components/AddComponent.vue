@@ -121,11 +121,12 @@ export default {
         "time": this.time,
         "notes": this.notes,
         "userId": this.userId = this.$auth.user.sub
-      });
+      }).then ( () => {
+        this.hide()
+      })
     },
     addCategory() {
       this.categories.push(this.category);
-      console.log(this.categories);
       this.category = '';
     },
     remove(category) {
@@ -134,6 +135,9 @@ export default {
     show () {
       this.$modal.show('add-form')
     },
+    hide () {
+      this.$modal.hide('add-form')
+    }
   }
 }
 

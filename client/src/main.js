@@ -6,9 +6,7 @@ import VModal from 'vue-js-modal'
 
 // Import the Auth0 configuration
 import { domain, clientId, audience } from "../auth_config.json";
-console.log(domain);
-console.log(clientId);
-console.log(audience);
+
 // Import the plugin here
 import { Auth0Plugin } from "./auth";
 

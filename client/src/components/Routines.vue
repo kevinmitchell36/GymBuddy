@@ -48,7 +48,6 @@ export default {
     async fetchToken() {
       const accessToken = await this.$auth.getTokenSilently()
       this.fetchRoutines(accessToken)
-      console.log(accessToken)
     }
   },
   computed: {

@@ -1,7 +1,7 @@
 <template>
   <div>
     <button @click.prevent="show"><i class="far fa-edit"></i></button>
-    <modal :name="'edit-form-' + routine._id" :height="800">
+    <modal :name="'edit-form-' + routine._id" :height="750">
       <form @submit.prevent="update()">
         <div class="form-wrap" v-if="edit === true">
           <div class="form-group">
@@ -61,7 +61,7 @@
 
 <script>
 import DeleteComponent from "@/components/DeleteComponent"
-import axios from 'axios';
+import { mapActions } from 'vuex'
 export default {
   name: 'edit-routine',
   props: ['routine'],
@@ -83,12 +83,13 @@ export default {
       })
     },
     hide() {
-      console.log("Hiding...in theory")
       this.$modal.hide('edit-form-' + this.routine._id)
       location.reload()
     },
+    ...mapActions(['updateRoutine']),
     update() {
-      let params = {
+      this.updateRoutine({
+        id: this.routine._id,
         name: this.attrs.name,
         wtype: this.attrs.wtype,
         categories: this.attrs.categories,
@@ -96,10 +97,8 @@ export default {
         reps: this.attrs.reps,
         time: this.attrs.time,
         notes: this.attrs.notes,
-        userId: this.routine.userId
-      }
-      console.log(params);
-      axios.patch("http://localhost:3000/api/routines/" + this.routine._id, params)
+        userId: this.$auth.user.sub
+      })
       .then(() => {
         this.hide()
       })
@@ -109,7 +108,6 @@ export default {
     },
     addCategory() {
       this.routine.categories.push(this.category);
-      console.log(this.categories);
       this.category = '';
     }, 
   }
