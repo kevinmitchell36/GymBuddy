@@ -121,8 +121,11 @@ export default {
         "time": this.time,
         "notes": this.notes,
         "userId": this.userId = this.$auth.user.sub
-      }).then ( () => {
+      }).then ( (response) => {
+        console.log(response.data)
+        this.$emit('highlight', this.routine.id)
         this.hide()
+        
       })
     },
     addCategory() {

@@ -30,7 +30,8 @@ const actions = {
     commit('setSingleRoutine', response.data);
   },
   async setRoutine( { commit }, routine) {
-    const response = await axios.post("http://localhost:3000/api/routines/", routine );
+    const response = await axios.post("http://localhost:3000/api/routines/", routine )
+    console.log(response)
     commit('postRoutine', response.data)
   },
   async updateRoutine( {commit}, routine) {

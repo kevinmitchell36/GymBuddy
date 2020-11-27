@@ -12,7 +12,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="routine in allRoutines" :key="routine._id" class="routine">
+        <tr v-for="routine in allRoutines" :key="routine._id" :class="['new-routine' ? routine._id === newRoutineId : '']">
           <td class="name">{{routine.name}}</td>
           <td class="type">{{routine.wtype}}</td>
           <td>
@@ -22,7 +22,7 @@
           </td>
           <td class="notes">{{routine.notes}}</td>
             <td class="drop-down">
-            <ShowComponent  :routine="routine" />
+            <ShowComponent  :routine="routine" @highlight="highlightNew"/>
           </td>
         </tr>
       </tbody>
@@ -37,7 +37,8 @@ export default {
   name: "Routines",
   data() {
     return {
-      routine: {}
+      routine: {},
+      newRoutineId: "",
     }
   },
   components: {
@@ -48,6 +49,9 @@ export default {
     async fetchToken() {
       const accessToken = await this.$auth.getTokenSilently()
       this.fetchRoutines(accessToken)
+    },
+    highlightNew(id) {
+      this.newRoutineId = id
     }
   },
   computed: {
@@ -77,5 +81,11 @@ th, td {
   border-bottom: 2px solid black;
   padding: 5px 0;
 }
+
+.new-routine {
+  background: green;
+}
+
+
 
 </style>

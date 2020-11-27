@@ -3,8 +3,8 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const jwt = require("express-jwt"); 
-const jwksRsa = require("jwks-rsa"); 
+// const jwt = require("express-jwt"); 
+// const jwksRsa = require("jwks-rsa"); 
 const router = express.Router();
 
 //Initialize new instance of Express
@@ -28,9 +28,10 @@ mongoose.connect(uri, {useNewUrlParser: true, useUnifiedTopology: true})
 
 //Require routes
 const routines = require('./routes/api/routines');
-
-
 app.use('/api/routines', routines);
+
+const gymbag = require('./routes/api/gymbag');
+app.use('/api/gymbag', gymbag);
 
 
 //Set sever
@@ -50,19 +51,19 @@ router.get(options, (req, res) => {
   console.log(res);
 });
 
-const checkJwt = jwt({
-  // Provide a signing key based on the key identifier in the header and the signing keys provided by your Auth0 JWKS endpoint.
-  secret: jwksRsa.expressJwtSecret({
-    cache: true,
-    rateLimit: true,
-    jwksRequestsPerMinute: 5,
-    jwksUri: `https://${authConfig.domain}/.well-known/jwks.json`
-  }),
+// const checkJwt = jwt({
+//   // Provide a signing key based on the key identifier in the header and the signing keys provided by your Auth0 JWKS endpoint.
+//   secret: jwksRsa.expressJwtSecret({
+//     cache: true,
+//     rateLimit: true,
+//     jwksRequestsPerMinute: 5,
+//     jwksUri: `https://${authConfig.domain}/.well-known/jwks.json`
+//   }),
 
-  // Validate the audience (Identifier) and the issuer (Domain).
-  audience: authConfig.audience,
-  issuer: `https://${authConfig.domain}/`,
-  algorithm: ["RS256"]
-});
+//   // Validate the audience (Identifier) and the issuer (Domain).
+//   audience: authConfig.audience,
+//   issuer: `https://${authConfig.domain}/`,
+//   algorithm: ["RS256"]
+// });
 
 
