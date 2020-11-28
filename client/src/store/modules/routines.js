@@ -3,8 +3,6 @@ import axios from 'axios';
 const state = {
   routines: [],
   routine: {}, 
-  accessToken: "",
-  id: "",
 };
 
 const getters = {
@@ -20,14 +18,6 @@ const actions = {
       }
     });
     commit('setRoutines', response.data);
-  },
-  async fetchSingleRoutine( {commit}, temp ) {
-    const response = await axios.get("http://localhost:3000/api/routines/" + temp.id, {
-      headers: {
-        Authorization: `Bearer ${temp.accessToken}`
-      }
-    });
-    commit('setSingleRoutine', response.data);
   },
   async setRoutine( { commit }, routine) {
     const response = await axios.post("http://localhost:3000/api/routines/", routine )

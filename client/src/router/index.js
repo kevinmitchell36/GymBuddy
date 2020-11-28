@@ -3,6 +3,7 @@ import VueRouter from 'vue-router';
 import Home from '../views/Home.vue';
 import Index from '../views/Index.vue';
 import AddComponent from '../components/AddComponent.vue';
+import GymBagComponent from '../components/GymBagComponents/GymBagComponent.vue'
 import { authGuard } from '../auth/authGuard';
 
 
@@ -30,16 +31,16 @@ const routes = [
     beforeEnter: authGuard
   },
   {
-    path: '/routines/:id',
-    name: 'routineSingle',
-    component: () => import('../components/RoutineSingle.vue'),
-    beforeEnter: authGuard
-  },
-  {
+    // Casting Error?
     path: '/add',
     name: 'routineAdd',
     component: AddComponent,
     beforeEnter: authGuard
+  },
+  {
+    path: '/gymbag',
+    name: 'gym-bag', 
+    component: GymBagComponent
   }
 ]
 
