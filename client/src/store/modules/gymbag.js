@@ -26,12 +26,32 @@ const actions = {
     } catch(err) {
       console.log(err)
     }
+  },
+  async destroyGymBagItem( {commit}, id) {
+    let deletedIndex = null
+    try { 
+      await axios.delete(`${url}${id}`)
+      for (let index in state.gymbag) {
+        if(id === state.gymbag[index]._id) {
+          deletedIndex = index
+          break
+        }
+      }
+    } catch(err) {
+      console.log(err)
+    }
+    if (deletedIndex === null) {
+      // send message
+    } else {
+    commit('deleteGymBagItem', deletedIndex)
+    }
   }
 }
 
 const mutations = {
   mountGymBag: (state, gymbag) => (state.gymbag = gymbag),
   postGymBagItem: (state, gymbag) => state.gymbag.unshift(gymbag),
+  deleteGymBagItem: (state, index) => state.gymbag.splice(index, 1)
 } 
 
 

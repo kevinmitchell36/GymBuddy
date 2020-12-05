@@ -1,11 +1,12 @@
 <template>
   <div id="gym-bag">
-    <div class="temp" v-for="routine in wholeBag" :key="routine._id">
+    <div class="temp" v-for="gymBagItem in wholeBag" :key="gymBagItem._id">
       <div class="card">
         <img src="img_avatar.png" alt="Avatar" style="width:100%">
         <div class="container">
-          <h4><b>{{routine.name}}</b></h4>
-          <p>{{routine.notes}}</p>
+          <h4><b>{{gymBagItem.name}}</b></h4>
+          <p>{{gymBagItem.notes}}</p>
+          <button @click="deleteGymBagItem(gymBagItem._id)">Delete</button>
         </div>
       </div>
     </div>
@@ -22,7 +23,10 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['getGymBag'])
+    ...mapActions(['getGymBag','destroyGymBagItem']),
+    deleteGymBagItem(id) {
+      this.destroyGymBagItem(id)
+    }
   },
   computed: {
     ...mapGetters(['wholeBag'])

@@ -54,7 +54,7 @@
         <p>notes: {{routine.notes}}</p>
         <button @click="edit = true">Edit</button>
         <button @click="addToGymBag()">Gym Bag</button>
-        <DeleteComponent :routineId="routine._id"/>  
+        <DeleteComponent :routine="routine"/>  
       </div>
     </modal>
   </div>

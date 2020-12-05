@@ -1,17 +1,15 @@
 <template>
-  <button @click="deleteRoutine()"><i class="far fa-trash-alt"></i></button>
+  <button @click="deleteRoutine(routine)"><i class="far fa-trash-alt"></i></button>
 </template>
 
 <script>
-import axios from 'axios'
+import { mapActions } from 'vuex'
 export default {
-  props: ['routineId'],
+  props: ['routine'],
   methods: {
-    deleteRoutine() {
-      axios.delete("http://localhost:3000/api/routines/" + this.routineId)
-      .then(() => {
-        location.reload()
-      })
+    ...mapActions(["destroyRoutine"]),
+    deleteRoutine(routine) {
+      this.destroyRoutine(routine)
     }
   }
 }

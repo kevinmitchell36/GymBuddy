@@ -72,8 +72,8 @@ router.patch('/:id', (req, res) => {
 
 router.delete("/:id", (req, res) => {
   GymBag.deleteOne({_id: req.params.id})
-    .then(() => {
-      res.send("Deleted")
+    .then((gymbag) => {
+      res.send(gymbag)
     })
 })
 
