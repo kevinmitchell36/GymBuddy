@@ -53,6 +53,7 @@
         <p>time: {{routine.time}}</p>
         <p>notes: {{routine.notes}}</p>
         <button @click="edit = true">Edit</button>
+        <button @click="addToGymBag()">Gym Bag</button>
         <DeleteComponent :routineId="routine._id"/>  
       </div>
     </modal>
@@ -61,7 +62,7 @@
 
 <script>
 import DeleteComponent from "@/components/DeleteComponent"
-import { mapActions } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'edit-routine',
   props: ['routine'],
@@ -86,7 +87,7 @@ export default {
       this.$modal.hide('edit-form-' + this.routine._id)
       location.reload()
     },
-    ...mapActions(['updateRoutine']),
+    ...mapActions(['updateRoutine', 'createGymBagItem']),
     update() {
       this.updateRoutine({
         id: this.routine._id,
@@ -103,14 +104,26 @@ export default {
         this.hide()
       })
     },
+    addToGymBag() {
+      this.createGymBagItem({
+        "sets": this.routine.sets,
+        "reps": this.routine.reps,
+        "time": this.routine.time,
+        "notes": this.routine.notes,
+        "setId": 1,
+        "routine": this.routine._id
+      })
+    },
     remove(category) {
       this.routine.categories.splice(this.routine.categories.indexOf(category), 1);
     },
     addCategory() {
       this.routine.categories.push(this.category);
       this.category = '';
-    }, 
-  }
+    },
+    ...mapGetters(['wholeBag'])
+    
+  },
 }
 </script>
 

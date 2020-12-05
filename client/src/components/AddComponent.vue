@@ -125,7 +125,6 @@ export default {
         console.log(response.data)
         this.$emit('highlight', this.routine.id)
         this.hide()
-        
       })
     },
     addCategory() {

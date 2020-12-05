@@ -28,7 +28,8 @@ router.get('/:id', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-  const id = req.body.id
+  console.log(req)
+  const id = req.body.routine
   let routine = null
   Routine.findById(id, (err, result) => {
     if (err) {
