@@ -14,7 +14,7 @@ const app = express();
 app.use(cors());
 
 //Body Parser
-app.use(bodyParser.json());
+  app.use(bodyParser.json());
 
 
 //Require Database

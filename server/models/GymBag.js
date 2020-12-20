@@ -14,8 +14,8 @@ const GymBagSchema = new mongoose.Schema({
   notes: {
     type: String
   },
-  setId: {
-    type: Number
+  parentId: {
+    type: String
   },
   routine: {
     type: Schema.Types.ObjectId,
@@ -25,8 +25,11 @@ const GymBagSchema = new mongoose.Schema({
     type: String
   },
   createdAt: {
-    type: String
-  }
+    type: Date
+  },
+  bagId: {
+    type: Number
+  } 
 });
 
 /*

@@ -28,46 +28,67 @@ router.get('/:id', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-  getRecord(req, res)
-  // parentId is different depending on if/else path
-})
-
-let getRecord = async function( req, res) {
   let dataTable = null
   console.log("Intial query")
-  console.log(req.body)
+  console.log(req.query)
   if(req.query && req.query.set === 'true') {
     dataTable = req.body
     console.log("if true")
-    saveGymBagAndRespond(res, dataTable, dataTable.routine._id, dataTable._id)
+    console.log(dataTable)
   } else {
-    await Routine.findById(req.body.routine, (err, result) => {
+    const id = req.body.routine
+    // let routine = null
+    // Pull from routine 
+    await Routine.findById(id, (err, result) => {
       if (err) {
         res.send(err)
       } else {
         dataTable = result
         console.log("findById")
+        console.log(dataTable)
       }
-    }).then((dataTable) => {saveGymBagAndRespond(res, dataTable, null, dataTable._id)})
+    })
   }
-}
-
-let saveGymBagAndRespond = function (res, dataTable, parentId, routineId) {
-  console.log("setting new gymbag...")
-  console.log(dataTable)
+  // parentId is different depending on if/else path
   const newGymBag = new GymBag({
     sets: dataTable.sets,
     reps: dataTable.reps,
     time: dataTable.time,
     notes: dataTable.notes,
-    parentId: parentId,
-    routine: routineId,
-    userId: dataTable.userId,
+    parentId: 0, // ?,
+    routine: routine._id,
+    userId: dataTable.useId,
     createdAt: dataTable.createdAt,
     bagId: null,
   })
-  console.log("complete new gymbag")
-  console.log(newGymBag)
+  newGymBag.save()
+  .then((gymbag) => {
+    res.send(gymbag)
+  })
+})
+
+async getRecord(dataTable, res) {
+  let record 
+  await Routine.findById(id, (err, result) => {
+    if (err) {
+      res.send(err)
+    } else {
+      record = result
+      console.log("findById")
+      console.log(record)
+    }
+  })
+  const newGymBag = new GymBag({
+    sets: dataTable.sets,
+    reps: dataTable.reps,
+    time: dataTable.time,
+    notes: dataTable.notes,
+    parentId: 0, // ?,
+    routine: routine._id,
+    userId: dataTable.useId,
+    createdAt: dataTable.createdAt,
+    bagId: null,
+  })
   newGymBag.save()
   .then((gymbag) => {
     res.send(gymbag)

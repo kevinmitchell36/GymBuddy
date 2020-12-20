@@ -110,7 +110,10 @@ export default {
         "reps": this.routine.reps,
         "time": this.routine.time,
         "notes": this.routine.notes,
-        "setId": 1,
+        "parentId": null,
+        "createdAt": Date.now(),
+        "userId": this.$auth.user.sub,
+        "bagId": null,
         "routine": this.routine._id
       })
     },

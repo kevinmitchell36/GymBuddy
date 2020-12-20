@@ -2,11 +2,13 @@
   <div id="gym-bag">
     <div class="temp" v-for="gymBagItem in wholeBag" :key="gymBagItem._id">
       <div class="card">
-        <img src="img_avatar.png" alt="Avatar" style="width:100%">
+        <p>Id: {{gymBagItem._id}}</p>
         <div class="container">
           <h4><b>{{gymBagItem.name}}</b></h4>
           <p>{{gymBagItem.notes}}</p>
+          <p>Parent Id:{{gymBagItem.parentId}}</p>
           <button @click="deleteGymBagItem(gymBagItem._id)">Delete</button>
+          <button v-if="gymBagItem.parentId === null" @click="generateSets(gymBagItem)">Generate Sets</button>
         </div>
       </div>
     </div>
@@ -23,9 +25,13 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['getGymBag','destroyGymBagItem']),
+    ...mapActions(['getGymBag','destroyGymBagItem', 'populateSets']),
     deleteGymBagItem(id) {
       this.destroyGymBagItem(id)
+    },
+    generateSets(gymBagItem) {
+      console.log(gymBagItem)
+      this.populateSets(gymBagItem)
     }
   },
   computed: {

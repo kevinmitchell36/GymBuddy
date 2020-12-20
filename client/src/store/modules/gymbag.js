@@ -13,13 +13,10 @@ const getters = {
 const actions = {
   async getGymBag( {commit} ) {
     const response = await axios.get(url);
-    console.log(response)
     commit('mountGymBag', response.data)
   },
 
   async createGymBagItem( {commit}, routine ) {
-    console.log(url)
-    console.log(routine)
     try {
       const response = await axios.post(url, routine)
       commit('postGymBagItem', response.data)
@@ -45,13 +42,28 @@ const actions = {
     } else {
     commit('deleteGymBagItem', deletedIndex)
     }
+  },
+
+  async populateSets( {commit}, gymBagItem) {
+    try {
+      let sets = []
+      for (let i = 0; i < gymBagItem.sets - 1; i++) {
+        const response = await axios.post(url + "?set=true", gymBagItem)
+        console.log(response.data)
+        sets.push(response.data)
+      }
+      commit('multipleSets', sets)
+    } catch(err) {
+      console.log(err)
+    }
   }
 }
 
 const mutations = {
   mountGymBag: (state, gymbag) => (state.gymbag = gymbag),
   postGymBagItem: (state, gymbag) => state.gymbag.unshift(gymbag),
-  deleteGymBagItem: (state, index) => state.gymbag.splice(index, 1)
+  deleteGymBagItem: (state, index) => state.gymbag.splice(index, 1),
+  multipleSets: (state, gymBagItem) => state.gymbag = state.gymbag.concat(...gymBagItem)
 } 
 
 
