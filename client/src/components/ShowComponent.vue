@@ -40,8 +40,9 @@
           <button @click="edit = false">Cancel</button>
         </div>
       </form>
-      <div class="form-wrap" v-if="edit === false">
-        <div class="from-group">  
+      <div v-if="edit === false">
+        <CardComponent :routine="routine"/>
+        <!-- <div class="from-group">  
           <p>Name: </p>
           <p>{{routine.name}}</p>
         </div>
@@ -51,7 +52,7 @@
         <p>sets: {{routine.sets}}</p>
         <p>reps: {{routine.reps}}</p>
         <p>time: {{routine.time}}</p>
-        <p>notes: {{routine.notes}}</p>
+        <p>notes: {{routine.notes}}</p> -->
         <button @click="edit = true">Edit</button>
         <button @click="addToGymBag()">Gym Bag</button>
         <DeleteComponent :routine="routine"/>  
@@ -62,12 +63,14 @@
 
 <script>
 import DeleteComponent from "@/components/DeleteComponent"
+import CardComponent from "@/components/CardComponent"
 import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'edit-routine',
   props: ['routine'],
   components: {
-    DeleteComponent
+    DeleteComponent,
+    CardComponent
   },
   data () {
     return {

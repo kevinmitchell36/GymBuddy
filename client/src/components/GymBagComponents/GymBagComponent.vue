@@ -12,6 +12,9 @@
         </div>
       </div>
     </div>
+    <div id="run-workout">
+      <router-link to='/runworkout'>Run Workout</router-link>
+    </div>
   </div>
 </template>
 

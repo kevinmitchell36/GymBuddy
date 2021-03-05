@@ -68,7 +68,9 @@ export default {
   grid-template-columns: 6fr 3fr 2fr 2fr;
   padding: 1rem;
   align-items: center;
-  background-color: #2074c1;
+  /* background-color: #2074c1; */
+  background: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFJpofY6rk-AYspfiR9ttQ8-Irdpey2KGzSg&usqp=CAU&ec=45768318")  center center/cover; 
+
 }
 
 #main-nav .social {

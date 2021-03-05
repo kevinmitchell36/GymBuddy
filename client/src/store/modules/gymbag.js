@@ -3,11 +3,32 @@ import axios from 'axios';
 const url = "http://localhost:3000/api/gymbag/"
 
 const state = {
-  gymbag: []
+  gymbag: [],
+  mockGymBag: [
+    {
+      id: 1,
+      name: "Squats",
+      sets: 3,
+      reps: 15
+    },
+    {
+      id: 2,
+      name: "Press",
+      sets: 3,
+      reps: 10
+    },
+    {
+      id: 3,
+      name: "Rows",
+      sets: 3,
+      reps: 12
+    }
+  ]
 };
 
 const getters = {
-  wholeBag: (state) => state.gymbag
+  wholeBag: (state) => state.gymbag,
+  getMockGymBag: (state) => state.mockGymBag
 }
 
 const actions = {
