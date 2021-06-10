@@ -7,6 +7,7 @@ import GymBagComponent from '../components/GymBagComponents/GymBagComponent.vue'
 import RunWorkout from '../components/GymBagComponents/RunWorkout.vue'
 import ExampleShow from '../components/GymBagComponents/ExampleShow.vue'
 import CardComponent from '../components/CardComponent.vue'
+import Carousel from '../components/Carousel.vue'
 import { authGuard } from '../auth/authGuard';
 
 
@@ -59,6 +60,10 @@ const routes = [
     path: '/cardexample',
     name: 'card-example', 
     component: CardComponent,
+  },
+  {
+    path: '/test',
+    component: Carousel
   }
 ]
 

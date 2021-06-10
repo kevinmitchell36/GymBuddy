@@ -1,47 +1,31 @@
 <template>
-  <div class="wrapper">
-    <div class="card">
-      <img src="https://thumbs.gfycat.com/BlueWetHarvestmouse-small.gif" alt="Avatar">
-      <div class="container">
-        <div class="name">
-          <h4>Routine</h4>
-          <hr>
-          <p>{{routine.name}}</p>
+  <div class="flip-card">
+    <div class="flip-card-inner">
+      <div class="flip-card-front">
+        <div class="container">
+          <div class="box name">Kettle Bell Squats</div>
+          <div class="box category">Free Weights</div>
+          <div class="box img">
+            <img src="https://media.giphy.com/media/7J4HZn44mlCg1y8P2a/giphy.gif">
+          </div>
+          <div class="box group">Lower Body</div>
+          <div class="box targets">Glutes, Quads</div>
+          
+          <div class="box weight"><i class="fas fa-dumbbell"></i><span class="value">25 lbs.</span></div>
+          <div class="box sets"><i class="fas fa-circle-notch"></i><span class="value">3</span></div>
+          <div class="box reps"><i class="fas fa-redo"></i><span class="value">12</span></div>
+          <div class="box time">N/A</div>
+          <div class="box tempo">3A01</div>
+          <div class="box notes">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aspernatur, praesentium eveniet corporis fuga animi cumque blanditiis dolore quaerat vel quas?</div>
         </div>
-        <div class="weight">
-          <h4>Weight</h4>
-          <hr>
-          <p>{{routine.weight}}</p>
-        </div>
-        <div class="reps">
-          <h4>Reps</h4>
-          <hr>
-          <p>{{routine.reps}}</p>
-        </div>
-        <div class="sets">
-          <h4>Sets</h4>
-          <hr>
-          <p>{{routine.sets}}</p>
-        </div>
-        <div class="time">
-          <h4>Time</h4>
-          <p>{{routine.time}}</p>
-        </div> 
-        <div class="tempo">
-          <h4>Tempo</h4>
-          <p>{{routine.tempo}}</p>
-        </div>  
-        <div class="targets">
-          <h4>Targets</h4>
-          <p>{{routine.targets}}</p>
-        </div>  
-        <div class="notes">
-          <h4>Notes</h4>
-          <p>{{routine.notes}}</p>
-        </div> 
+      </div>
+      <div class="flip-card-back">
+        <h1>John Doe</h1>
+        <p>Architect & Engineer</p>
+        <p>We love that guy</p>
+      </div>
     </div>
   </div>
-</div>
 </template>
 
 <script>
@@ -49,7 +33,7 @@ export default {
   props: ["routine"],
   data () {
     return {
-      cards: [
+      card:
         { 
           id: 1,  
           name: "Squats", 
@@ -62,8 +46,7 @@ export default {
           time: "Nil",
           tempo: "3A01",
           notes: "Ass to grass!"
-        },
-      ]
+        }
     }
   }
 }
@@ -71,74 +54,106 @@ export default {
 
 <style scoped>
 
-.wrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-content: center;
-  align-items: center;
-} 
+/* .flip-card {
+  background-color: transparent;
+  perspective: 1000px; 
+} */
 
-.card {
-  height: 75vh;
-  width: 75vw;
-  border-radius: 10%;
-  overflow: hidden;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  transition: 0.3s;
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
 }
 
-.card:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+/* Position the front and back side */
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
+}
+
+.flip-card-back {
+  transform: rotateY(180deg);
+  border: 2px solid black;
 }
 
 .container {
-  font-family: 'Arvo', serif;
+  width: 50%;
+  height: 75vh;
+  margin: auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
   display: grid;
-  grid-template-columns: repeat(4, auto);
-  padding: 2px 16px;
-  justify-content: space-evenly;
+  grid-gap: 5px;
+  grid-template-rows: 5% 40% 5% 20% 5% 20%;
+  grid-template-columns: repeat(6, 1fr);
 }
 
-.container:first-child {
-  border: 1px solid black;
+
+.container:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2)
+}
+
+.box {
+  color: black;
+  padding: 5px;
+}
+
+.name, .group, .time  {
+  justify-self: start;
+  grid-column: span 3;
+}
+
+.category, .targets, .tempo {
+  justify-self: end;
+  grid-column: span 3;
+}
+
+.img {
+  grid-column: span 6;
 }
 
 img {
-  height: 300px;
-  width: 100%;
+  max-height: 100%;
+  max-width: 100%;
 }
 
-hr {
-  border-color: blue;
-  margin: .5em 0;
-}
 
-.time {
-  margin: 2.5em 0;
-  grid-column: 1 / span 2;
-  display: flex;
-  justify-content: space-evenly;
-}
-
-.tempo {
-  margin: 2.5em 0;
-  grid-column: 3 / span 2;
-  display: flex;
-  justify-content: space-evenly;
-}
-.targets {
-  margin: 2.5em 0;
-  grid-column: 1 / span 4;
-  display: flex;
-  justify-content: space-evenly;
+.weight, .sets, .reps {
+  justify-self: center;
+  grid-column: span 2;
+  margin: auto;
+  
 }
 
 .notes {
-  margin: 2.5em 0;
-  grid-column: 1 / span 4;
-  display: flex;
-  justify-content: space-evenly;
+  justify-self: start;
+  grid-column: span 6;
 }
+
+.value {
+  display: block;
+  padding: .75em;
+}
+
+@media screen and (max-width: 400px) {
+  .container {
+    width: 100%;
+  }
+ }
+
+
+
+
+
 
 </style>
